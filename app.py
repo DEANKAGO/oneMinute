@@ -1,12 +1,13 @@
 from flask import Flask
+from .main import main_blueprint
 
-app = Flask(__name__)
 
+def create_app():
+    app = Flask(__name__)
+    app.register_blueprint(main_blueprint)
 
-@app.route('/')
-def home():
-    return '<h1>one minute pitch app</h1>'
+    return app
 
 
 if __name__ == '__main__':
-    app.run()
+    create_app()

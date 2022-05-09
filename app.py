@@ -2,9 +2,12 @@ import os
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from .main import main_blueprint
+from flask_migrate import Migrate
+from .main.blueprint import main_blueprint
 
 db = SQLAlchemy()
+from .main import models
+migrate = Migrate()
 
 
 def create_app():
@@ -12,6 +15,7 @@ def create_app():
     app.register_blueprint(main_blueprint)
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     db.init_app(app)
+    migrate.init_app(app, db)
 
     return app
 

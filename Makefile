@@ -4,5 +4,8 @@ server:
 migrations:
 		flask db init
 
-migrate:
+init:
 		flask db migrate
+
+upgrade:
+		flask db upgrade

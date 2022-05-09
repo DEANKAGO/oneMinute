@@ -29,3 +29,8 @@ class Comments(db.Model):
 class Pitches(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.Integer, db.ForeignKey('categories.id'))
+
+class Votes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    upvote = db.Column(db.Integer, db.ForeignKey(''))
+    downvote = db.Column(db.Integer, db.ForeignKey(''))

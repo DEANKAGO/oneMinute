@@ -1,13 +1,18 @@
+from flask import Flask
+
+from flask_sqlalchemy import SQLAlchemy
 import os
 from dotenv import load_dotenv, find_dotenv
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from .main.blueprint import main_blueprint
+from .main import models
+
+from .main.models import User
+
 
 db = SQLAlchemy()
-from .main import models
-migrate = Migrate()
+
+migrate = Migrate(__name__, db)
 
 
 def create_app():
@@ -17,7 +22,8 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    return app
+    # return dict(app=app, db=db)
+    return app 
 
 
 if __name__ == '__main__':

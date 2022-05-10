@@ -9,6 +9,8 @@ python-dotenv = "*"
 flask-migrate = "*"
 psycopg2-binary = "*"
 flask-sqlalchemy = "*"
+psycopg2 = "*"
+wtform = "*"
 
 [dev-packages]
 

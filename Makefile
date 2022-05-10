@@ -1,10 +1,10 @@
 server:
 		flask run
 
-migrations:
+init:
 		flask db init
 
-init:
+migrate:
 		flask db migrate
 
 upgrade:

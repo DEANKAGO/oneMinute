@@ -4,7 +4,7 @@ from flask_script import Manager,Server
 from flask_sqlalchemy import SQLAlchemy
 from app.main import main_blueprint
 import os
-
+from flask import Migrate
 
 # Creating app instance
 app = create_app('development')

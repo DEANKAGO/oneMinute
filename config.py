@@ -2,12 +2,11 @@ import os
 # from dotenv import load_dotenv, find_dotenv
 
 
-
 # load_dotenv(find_dotenv())
 class config(object):
-  
-  SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
-  DEBUG = os.getenv('DEBUG')
+    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
+    DEBUG = os.getenv('DEBUG')
+
 
 class ProdConfig(config):
     pass
@@ -16,8 +15,8 @@ class ProdConfig(config):
 class DevConfig(config):
     DEBUG = True
 
+
 config_options = {
-'development':DevConfig,
-'production':ProdConfig
+    'development': DevConfig,
+    'production': ProdConfig
 }
-  

@@ -1,11 +1,11 @@
 from flask import Flask
-from app import create_app
+from APP import create_app
 from flask_script import Manager, Server
 from flask_sqlalchemy import SQLAlchemy
-from app.main import main_blueprint
+from APP.main import main_blueprint
 import os
 from flask_migrate import Migrate
-from app.main import views
+# from app.main import views
 
 # Creating app instance
 app = create_app('development')

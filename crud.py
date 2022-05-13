@@ -1,5 +1,5 @@
 from flask_bcrypt import Bcrypt
-from app.models import db
+from APP.models import db
 
 bcrypt = Bcrypt()
 

@@ -1,8 +1,12 @@
-from flask import render_template as render_template
-from app.main import main_blueprint as main
+from flask import Blueprint, render_template as render_template
+from APP.main import main_blueprint as main
+from crud import *
+import APP
+
+user = Blueprint('user', __name__)
 
 
-@main.route('/home/')
+@main.route('/')
 def index():
     return render_template('index.html')
 
@@ -15,6 +19,10 @@ def register():
     # return 'failure'
     # processed_text = query.upper()
     return render_template('index.html')
+
+@main.route('/', methods=['GET', 'POST'])
+def add():
+    create_User(object, APP.Models.User.users, APP.Models.db)
 
 
 if __name__ == "__main__":

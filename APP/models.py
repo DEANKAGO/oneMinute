@@ -1,6 +1,8 @@
 from unicodedata import category
 from flask_sqlalchemy import SQLAlchemy
-from . import db
+from crud import *
+import APP
+
 # from werkzeug.security import generate_password_hash,check_password_hash
 
 

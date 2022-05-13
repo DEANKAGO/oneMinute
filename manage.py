@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from APP.main import main_blueprint
 import os
 from flask_migrate import Migrate
-# from app.main import views
+from APP.main import views
 
 # Creating app instance
 app = create_app('development')

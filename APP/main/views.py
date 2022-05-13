@@ -3,6 +3,7 @@ from APP.main import main_blueprint as main
 from crud import *
 import APP
 
+
 user = Blueprint('user', __name__)
 
 
@@ -20,9 +21,14 @@ def register():
     # processed_text = query.upper()
     return render_template('index.html')
 
+
 @main.route('/', methods=['GET', 'POST'])
 def add():
-    create_User(object, APP.Models.User.users, APP.Models.db)
+    form = New_user()
+
+    if form.is_submitted():
+
+    create_User(object, APP, db)
 
 
 if __name__ == "__main__":

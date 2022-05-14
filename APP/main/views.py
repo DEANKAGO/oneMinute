@@ -23,7 +23,7 @@ def register():
     return render_template('index.html')
 
 
-@main.route('/', methods=['GET', 'POST'])
+@main.route('/add', methods=['GET', 'POST'])
 def add():
     form = New_User()
 
@@ -37,7 +37,7 @@ def add():
 
     create_User(object, User, db)
     return redirect(url_for('main.index'))
-    return render_template('')
+    return render_template('add_user.html',)
 
     # except Exception as e:
     # return render_template("error.html", mess=e)
@@ -51,3 +51,11 @@ def delete(id):
     user=User.query.get(id)
     page_title=f"Delete User: {user.name}"
     return render_template("users/delete.html",page_title=page_title,user=user.name)
+
+
+@main.route('/comment/new/<int:pitch_id>', methods = ['GET', 'POST'])
+# @login_required
+def new_comment(comment_id):
+  """
+  View new comment page function that returns the comments on pitches
+  """

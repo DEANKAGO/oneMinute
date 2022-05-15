@@ -1,10 +1,9 @@
 from unicodedata import category
 from flask_sqlalchemy import SQLAlchemy
 from crud import *
-import APP
+import app
 
 # from werkzeug.security import generate_password_hash,check_password_hash
-
 
 db = SQLAlchemy()
 
@@ -13,7 +12,16 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True)
-    comments = db.Column(db.String)
+    email = db.Column(db.String)
+    password = db.Column(db.String)
+
+    def __init__(self, name, email, password):
+        self.name = name
+        self.email = email
+        self.password = password
+
+    def __repr__(self):
+        return '<name: {}>'.format(self.name)
 
     # pass_secure = db.Column(db.String)
     # @property
@@ -26,6 +34,7 @@ class User(db.Model):
 
     # def verify_password(self, password):
     #     return check_password_hash(self.pass_secure, password)
+
 
 class Categories(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -51,11 +60,8 @@ class Pitches(db.Model):
 
 class Votes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    upvote = db.Column(db.Integer, db.ForeignKey(''))
-    downvote = db.Column(db.Integer, db.ForeignKey(''))
-
-
-
+    upvote = db.Column(db.Integer, db.ForeignKey('pitches.id'))
+    downvote = db.Column(db.Integer, db.ForeignKey('pitches.id'))
 
     def __init__(self, object):
         self.name = object['name']
@@ -64,6 +70,3 @@ class Votes(db.Model):
 
     def __repr__(self):
         return {'name': self.name, 'downvote': self.downvote, 'upvote': self.upvote}
-
-
-

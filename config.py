@@ -6,6 +6,7 @@ import os
 class config(object):
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
     DEBUG = os.getenv('DEBUG')
+    # SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 class ProdConfig(config):

@@ -1,16 +1,16 @@
 from flask_bcrypt import Bcrypt
-from APP.models import db
+from app.models import User
 
 bcrypt = Bcrypt()
 
 
-def create_User(object, app, db):
-  if 'password' in object:
-    newPassword = bcrypt.generate_password_hash(object['password'])
-    object['password'] = newPassword
-    return{'status': True, '_payload': 'finished hashing the password'}
-  return {'status': False, '_payload': 'object does not contain password'}
+def create_User(object):
+    if 'password' in object:
+        newPassword = bcrypt.generate_password_hash(object['password'])
+        object['password'] = newPassword
+    user = User(**object)
+    # user = User(name=object['name'],
+    #             email=object['email'],
+    #             password=object['password'])
 
-
-def create_data(object, app, db):
-    print()
+    return {'created': True}

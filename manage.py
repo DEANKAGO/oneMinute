@@ -1,35 +1,23 @@
 from flask import Flask
-from APP import create_app
+from app import create_app
 from flask_script import Manager, Server
 from flask_sqlalchemy import SQLAlchemy
-from APP.main import main_blueprint
+from app.main import main_blueprint
 import os
 from flask_migrate import Migrate
-from APP.main import views
+from app.main import views
+from app.models import db
 
 # Creating app instance
 app = create_app('development')
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
-
-db = SQLAlchemy()
+app.config['SECRET_KEY'] = 'abc123'
 
 migrate = Migrate(app, db)
 
-
-def create_app():
-    app = Flask(__name__)
-    app.register_blueprint(main_blueprint)
-    db.init_app(app)
-    migrate.init_app(app, db)
-
-    return dict(app=app, db=db)
-    return app
-
-
 manager = Manager(app)
-# manager.add_command('server',Server)
 
 manager.add_command('server', Server)
 if __name__ == '__main__':
-    manager.run()
+    app.run(host="0.0.0.0", port=8000)
